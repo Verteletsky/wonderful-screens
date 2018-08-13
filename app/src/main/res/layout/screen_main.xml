@@ -18,14 +18,21 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:padding="16dp"
-      android:text="forwardContainer" />
+      android:text="forward Container" />
 
   <Button
       android:id="@+id/forwardPager"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:padding="16dp"
-      android:text="forwardPager" />
+      android:text="forward Pager" />
+
+  <Button
+      android:id="@+id/forwardPagerWithNavigation"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:padding="16dp"
+      android:text="forward Pager With BottomNavigationView" />
 
   <Button
       android:id="@+id/setRoot"
