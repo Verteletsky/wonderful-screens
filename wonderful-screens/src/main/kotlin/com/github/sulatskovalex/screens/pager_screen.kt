@@ -96,8 +96,12 @@ abstract class PagerScreen<S: PagerScreen<S, P, A>, P : PagerPresenter<P, S, A>,
   @CallSuper
   override fun <A : Any> openTab(tag: String, arg: A) {
     val indexOf = adapter.getIndexOf(tag)
-    adapter.scrollTo(indexOf, arg)
-    layoutManager.scrollToPosition(indexOf)
+    if (canScrollHorizontally) {
+      recyclerView.smoothScrollToPosition(indexOf)
+    } else {
+      layoutManager.scrollToPosition(indexOf)
+    }
+    adapter.setArgTo(indexOf, arg)
   }
 }
 
@@ -123,11 +127,11 @@ open class PagerPresenter<P: PagerPresenter<P, S, A>, S : PagerScreen<S, P, A>, 
   override fun <A : Any> setArgTo(tag: String, arg: A) {
     pagerRouter.setArgTo(tag, arg)
   }
-
+  // TODO("Решить вопрос с BottomNavigationView")
   open fun onScreenResumed(position: Int, screen: Screen<*, *, *>) {
 
   }
-
+  // TODO("Решить вопрос с BottomNavigationView")
   open fun onScreenPaused(position: Int, screen: Screen<*, *, *>) {
 
   }
@@ -158,7 +162,6 @@ internal class ScreensAdapter(val pagerPresenter: PagerPresenter<*,*,*>, tags: A
     val screen = holder.screen
     current = screen
     if (screen.state == Created || screen.state == Paused) {
-      pagerPresenter.onScreenResumed(getIndexOf(screen.screenTag), screen)
       screen.resume()
     }
   }
@@ -166,7 +169,6 @@ internal class ScreensAdapter(val pagerPresenter: PagerPresenter<*,*,*>, tags: A
   override fun onViewDetachedFromWindow(holder: ScreenHolder) {
     val screen = holder.screen
     if (screen.state == Resumed) {
-      pagerPresenter.onScreenPaused(getIndexOf(screen.screenTag), screen)
       screen.pause()
     }
   }
@@ -202,7 +204,7 @@ internal class ScreensAdapter(val pagerPresenter: PagerPresenter<*,*,*>, tags: A
     screen?.destroy()
   }
 
-  fun <A : Any> scrollTo(screenIndex: Int, arg: A) {
+  fun <A : Any> setArgTo(screenIndex: Int, arg: A) {
     (screens[screenIndex] as? Screen<*, *, A>)?.setArg(arg)
   }
 

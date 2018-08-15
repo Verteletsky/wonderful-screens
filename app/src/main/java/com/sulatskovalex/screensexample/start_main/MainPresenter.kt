@@ -4,6 +4,7 @@ import com.github.sulatskovalex.screens.Presenter
 import com.github.sulatskovalex.screens.Router
 import com.sulatskovalex.screensexample.CONTAINER_SCREEN_MAIN
 import com.sulatskovalex.screensexample.MAIN_SCREEN
+import com.sulatskovalex.screensexample.NAV_PAGER_SCREEN_MAIN
 import com.sulatskovalex.screensexample.PAGER_SCREEN_MAIN
 
 class MainPresenter(router: Router) : Presenter<MainPresenter, MainScreen, Unit>(router) {
@@ -22,5 +23,9 @@ class MainPresenter(router: Router) : Presenter<MainPresenter, MainScreen, Unit>
 
   fun onRootClick() {
     router.setRoot(PAGER_SCREEN_MAIN)
+  }
+
+  fun onPagerWithNavigationClick() {
+    router.forward(NAV_PAGER_SCREEN_MAIN)
   }
 }

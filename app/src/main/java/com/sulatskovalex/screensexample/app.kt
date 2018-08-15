@@ -57,68 +57,68 @@ const val NAV_PAGE_SCREEN_THIRD = "NAV_PAGER_SCREEN_THIRD"
 
 class MainActivity : ScreensActivity() {
 
-    override val router: Router by inject()
-    override val contentId: Int = R.layout.activity_main
-    override val container: ViewGroup
-        get() = mainActivityContainer
-    override val firstScreenTag: String = MAIN_SCREEN
+  override val router: Router by inject()
+  override val contentId: Int = R.layout.activity_main
+  override val container: ViewGroup
+    get() = mainActivityContainer
+  override val firstScreenTag: String = MAIN_SCREEN
 }
 
 class App : Application() {
 
-    override fun onCreate() {
-        super.onCreate()
-        // start Koin!
-        startKoin(listOf(mainModule))
-    }
+  override fun onCreate() {
+    super.onCreate()
+    // start Koin!
+    startKoin(listOf(mainModule))
+  }
 }
 
 // just declare it
 val mainModule = applicationContext {
-    bean { Router() }
+  bean { Router() }
 
-    screen(MAIN_SCREEN) { MainScreen(get(), MAIN_SCREEN) }
-    presenter { MainPresenter(get()) }
+  screen(MAIN_SCREEN) { MainScreen(get(), MAIN_SCREEN) }
+  presenter { MainPresenter(get()) }
 
-    /**
-     * Container
-     */
-    screen(CONTAINER_SCREEN_MAIN) { MainContainerScreen(get(), CONTAINER_SCREEN_MAIN) }
-    presenter { MainContainerPresenter(get()) }
+  /**
+   * Container
+   */
+  screen(CONTAINER_SCREEN_MAIN) { MainContainerScreen(get(), CONTAINER_SCREEN_MAIN) }
+  presenter { MainContainerPresenter(get()) }
 
-    screen(CONTAINER_SCREEN_FIRST) { ContainerFirstScreen(get(), CONTAINER_SCREEN_FIRST) }
-    presenter { ContainerFirstPresenter(get()) }
+  screen(CONTAINER_SCREEN_FIRST) { ContainerFirstScreen(get(), CONTAINER_SCREEN_FIRST) }
+  presenter { ContainerFirstPresenter(get()) }
 
-    screen(CONTAINER_SCREEN_SECOND) { ContainerSecondScreen(get(), CONTAINER_SCREEN_SECOND) }
-    presenter { ContainerSecondPresenter(get()) }
+  screen(CONTAINER_SCREEN_SECOND) { ContainerSecondScreen(get(), CONTAINER_SCREEN_SECOND) }
+  presenter { ContainerSecondPresenter(get()) }
 
-    /**
-     * ViewPager
-     */
-    screen(PAGER_SCREEN_MAIN) { MainPagerScreen(get(), PAGER_SCREEN_MAIN) }
-    presenter { MainPagerPresenter(get()) }
+  /**
+   * ViewPager
+   */
+  screen(PAGER_SCREEN_MAIN) { MainPagerScreen(get(), PAGER_SCREEN_MAIN) }
+  presenter { MainPagerPresenter(get()) }
 
-    screen(PAGE_SCREEN_FIRST) { PageFirstScreen(get(), PAGE_SCREEN_FIRST) }
-    presenter { PageFirstPresenter(get()) }
+  screen(PAGE_SCREEN_FIRST) { PageFirstScreen(get(), PAGE_SCREEN_FIRST) }
+  presenter { PageFirstPresenter(get()) }
 
-    screen(PAGE_SCREEN_SECOND) { PageSecondScreen(get(), PAGE_SCREEN_SECOND) }
-    presenter { PageSecondPresenter(get()) }
+  screen(PAGE_SCREEN_SECOND) { PageSecondScreen(get(), PAGE_SCREEN_SECOND) }
+  presenter { PageSecondPresenter(get()) }
 
-    screen(PAGE_SCREEN_THIRD) { PageThirdScreen(get(), PAGE_SCREEN_THIRD) }
-    presenter { PageThirdPresenter(get()) }
+  screen(PAGE_SCREEN_THIRD) { PageThirdScreen(get(), PAGE_SCREEN_THIRD) }
+  presenter { PageThirdPresenter(get()) }
 
-    /**
-     * ViewPager with BottomNavigationView
-     */
-    screen(NAV_PAGER_SCREEN_MAIN) { MainBottomNavigationScreen(get(), NAV_PAGER_SCREEN_MAIN) }
-    presenter { MainBottomNavigationPresenter(get()) }
+  /**
+   * ViewPager with BottomNavigationView
+   */
+  screen(NAV_PAGER_SCREEN_MAIN) { MainBottomNavigationScreen(get(), NAV_PAGER_SCREEN_MAIN) }
+  presenter { MainBottomNavigationPresenter(get()) }
 
-    screen(NAV_PAGE_SCREEN_FIRST) { NavPageFirstScreen(get(), NAV_PAGE_SCREEN_FIRST) }
-    presenter { NavPageFirstPresenter(get()) }
+  screen(NAV_PAGE_SCREEN_FIRST) { NavPageFirstScreen(get(), NAV_PAGE_SCREEN_FIRST) }
+  presenter { NavPageFirstPresenter(get()) }
 
-    screen(NAV_PAGE_SCREEN_SECOND) { NavPageSecondScreen(get(), NAV_PAGE_SCREEN_SECOND) }
-    presenter { NavPageSecondPresenter(get()) }
+  screen(NAV_PAGE_SCREEN_SECOND) { NavPageSecondScreen(get(), NAV_PAGE_SCREEN_SECOND) }
+  presenter { NavPageSecondPresenter(get()) }
 
-    screen(NAV_PAGE_SCREEN_THIRD) { NavPageThirdScreen(get(), NAV_PAGE_SCREEN_THIRD) }
-    presenter { NavPageThirdPresenter(get()) }
+  screen(NAV_PAGE_SCREEN_THIRD) { NavPageThirdScreen(get(), NAV_PAGE_SCREEN_THIRD) }
+  presenter { NavPageThirdPresenter(get()) }
 }

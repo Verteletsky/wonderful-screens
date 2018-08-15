@@ -16,6 +16,7 @@ class MainScreen(presenter: MainPresenter, override val screenTag: String)
     view.forward.setOnClickListener { presenter.onForwardClick() }
     view.forwardContainer.setOnClickListener { presenter.onContainerClick() }
     view.forwardPager.setOnClickListener { presenter.onPagerClick() }
+    view.forwardPagerWithNavigation.setOnClickListener { presenter.onPagerWithNavigationClick() }
     view.setRoot.setOnClickListener { presenter.onRootClick() }
 
     return view
